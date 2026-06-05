@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CoreIIGether - Toko Game Digital Terlengkap</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="bootstrap-custom.css">
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-gamestore">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">CoreIIGether</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html"><i class="fas fa-home me-1"></i> Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="store.html"><i class="fas fa-store me-1"></i> Store</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html"><i class="fas fa-tags me-1"></i> Categories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="promo.html"><i class="fas fa-percent me-1"></i> Promo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="news.html"><i class="fas fa-newspaper me-1"></i> News</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart me-1"></i> Cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="wishlist.html"><i class="fas fa-heart me-1"></i> Wishlist</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link support-link" href="#" role="button"><i class="fas fa-headset me-1"></i> Support</a>
+          </li>
+        </ul>
+
+        <!-- Compact search: dropdown to keep navbar tidy -->
+        <div class="nav-search dropdown ms-3">
+          <button class="btn btn-outline-gamestore dropdown-toggle" id="navSearchToggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-search"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-end p-3">
+            <form class="d-flex" id="navSearchForm" onsubmit="return false;">
+              <input class="form-control form-control-gamestore me-2" type="search" placeholder="Search games..." id="searchInput">
+              <button class="btn btn-primary-gamestore" type="button" id="searchBtn"><i class="fas fa-search"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <h1 class="display-4 fw-bold mb-3">Temukan Game Terbaik untuk PC Anda</h1>
+          <p class="lead mb-4">Jelajahi katalog terlengkap game digital dengan harga terbaik. Dapatkan diskon eksklusif
+            dan nikmati pengalaman gaming terbaik.</p>
+          <div class="d-flex flex-wrap gap-2">
+            <a href="store.html" class="btn btn-primary-gamestore btn-lg">
+              <i class="fas fa-gamepad me-2"></i> Jelajahi Store
+            </a>
+            <a href="promo.html" class="btn btn-outline-gamestore btn-lg">
+              <i class="fas fa-fire me-2"></i> Lihat Promo
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner rounded">
+              <div class="carousel-item active">
+                <img
+                  src="bahan/cyberpunk_20771.JPG"
+                  class="d-block w-100" alt="Game Banner 1">
+              </div>
+              <div class="carousel-item">
+                <img
+                  src="bahan/hogwarts_legacy1.JPG"
+                  class="d-block w-100" alt="Game Banner 2">
+              </div>
+              <div class="carousel-item">
+                <img
+                  src="bahan/fifa23.jpg"
+                  class="d-block w-100" alt="Game Banner 3">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Featured Games Section -->
+    <section class="mb-5">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="section-title">Game Terpopuler</h2>
+        <a href="store.html" class="btn btn-outline-gamestore">Lihat Semua <i class="fas fa-arrow-right ms-1"></i></a>
+      </div>
+
+      <div class="row g-4" id="featuredGames">
+        <!-- Game cards will be loaded here by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Promo Section -->
+    <section class="mb-5">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="section-title">Penawaran Spesial</h2>
+        <span class="badge-gamestore">Diskon hingga 50%</span>
+      </div>
+      <!-- Promo image link (placeholder) - klik untuk menuju halaman Promo -->
+    <div class="mb-3 text-center">
+  <a href="promo.html" title="Lihat Penawaran & Promo">
+    <img src="bahan/diskon1-removebg-preview.png"
+         alt="Promo Banner"
+         class="img-fluid rounded mx-auto d-block"
+         style="max-height: 100px; width: auto;">
+  </a>
+</div>
+
+
+      <div class="row g-4" id="promoGames">
+        <!-- Promo game cards will be loaded here by JavaScript -->
+      </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="mb-5">
+      <h2 class="section-title mb-4">Berita Gaming Terbaru</h2>
+
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="card game-card mb-4">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img
+                  src="bahan/brigida.PNG"
+                  class="img-fluid rounded-start" alt="Gaming News">
+              </div>
+              <div class="col-md-8">
+                <div class="game-card-body">
+                  <h3 class="game-title">Evolusi Game RPG: Dari Pixel hingga Realisme</h3>
+                  <p class="text-muted mb-2"><i class="far fa-calendar me-1"></i> 15 Juni 2023</p>
+                  <p>Genre Role-Playing Game (RPG) telah mengalami transformasi luar biasa sejak era 8-bit. Saat ini,
+                    RPG modern menawarkan dunia terbuka yang imersif, cerita kompleks, dan grafik yang memukau. Dengan
+                    perkembangan teknologi seperti ray tracing dan AI, masa depan RPG menjanjikan pengalaman yang
+                    semakin personal dan mendalam.</p>
+                  <a href="news.html" class="btn btn-outline-gamestore btn-sm">Baca Selengkapnya</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="card game-card">
+            <div class="game-card-body">
+              <h5 class="game-title mb-3">Trend Gaming 2023</h5>
+              <ul class="list-unstyled">
+                <li class="mb-2"><i class="fas fa-gamepad text-primary me-2"></i> Cloud Gaming semakin populer</li>
+                <li class="mb-2"><i class="fas fa-vr-cardboard text-primary me-2"></i> VR/AR memasuki mainstream</li>
+                <li class="mb-2"><i class="fas fa-users text-primary me-2"></i> Game sosial dan komunitas</li>
+                <li class="mb-2"><i class="fas fa-chart-line text-primary me-2"></i> Esports terus berkembang</li>
+                <li><i class="fas fa-robot text-primary me-2"></i> Integrasi AI dalam gameplay</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- YouTube Embed Section -->
+    <section class="mb-5">
+      <h2 class="section-title mb-4">Trailer Game Terbaru</h2>
+
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="ratio ratio-16x9">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/sJbexcm4Trk?si=8P_PNTNAQL2IdhRx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card game-card h-100">
+            <div class="game-card-body">
+              <h4 class="game-title">Cyberpunk 2077: Phantom Liberty</h4>
+              <p class="game-genre">Action RPG • CD Projekt Red</p>
+              <p>Ekspansi besar pertama untuk Cyberpunk 2077 membawa pemain kembali ke Night City dengan cerita
+                mata-mata yang penuh aksi. Fitur baru, karakter, dan mekanika gameplay menunggu di distrik Dogtown yang
+                berbahaya.</p>
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <span class="game-price">Rp 499,000</span>
+                <button class="btn btn-primary-gamestore btn-sm" id="heroBuyBtn" data-game-id="1">Beli Sekarang</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Inline music player removed: floating control remains at bottom-right -->
+
+    <!-- Contact & Map Section -->
+    <section class="mb-5">
+      <h2 class="section-title mb-4">Kantor Kami</h2>
+
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="card game-card h-100">
+            <div class="game-card-body">
+             
+              <div class="mb-3">
+                <h5><i class="fas fa-map-marker-alt text-primary me-2"></i> Alamat</h5>
+                <p>51-11 Murokocho Terao<br>Katsuyama, Fukui 911-8601, Jepang Katsuyama Dinosaur Forest Nagaoyama Park</p>
+              </div>
+
+              <div class="mb-3">
+                <h5><i class="fas fa-phone text-primary me-2"></i> Telepon</h5>
+                <p>+62 858-001-313-98</p>
+              </div>
+
+              <div class="mb-3">
+                <h5><i class="fas fa-envelope text-primary me-2"></i> Email</h5>
+                <p>nandowablangko1585@gmail.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card game-card h-100">
+            <div class="game-card-body p-0">
+              <div class="ratio ratio-16x9">
+                <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3224.4593565945274!2d136.50408627518908!3d36.08228887246054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5ff89af3546bd879%3A0x55d1ff4a7646b4e1!2sMuseum%20Dinosaurus%20Prefektur%20Fukui!5e0!3m2!1sid!2sid!4v1768662453176!5m2!1sid!2sid" width="600" height="450"
+                 style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-gamestore">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4">
+      <h5 class="mb-3">CoreIIGether</h5>
+          <p>Toko game digital terpercaya dengan koleksi terlengkap dan harga terbaik untuk gamers Indonesia.</p>
+          <div class="d-flex mt-3">
+            <a href="#" class="btn btn-outline-gamestore btn-sm me-2"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="btn btn-outline-gamestore btn-sm me-2"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="btn btn-outline-gamestore btn-sm me-2"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="btn btn-outline-gamestore btn-sm"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <h5 class="mb-3">Tautan Cepat</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="store.html">Store</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li><a href="promo.html">Promo & Discount</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <h5 class="mb-3">Informasi</h5>
+          <ul class="footer-links">
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="wishlist.html">Wishlist</a></li>
+            <li><a href="#">Kebijakan Privasi</a></li>
+            <li><a href="#">Syarat & Ketentuan</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <h5 class="mb-3">Newsletter</h5>
+          <p>Dapatkan info promo dan game terbaru langsung ke email Anda.</p>
+          <form id="newsletterForm">
+            <div class="input-group mb-3">
+              <input type="email" class="form-control form-control-gamestore" placeholder="Email Anda" required>
+              <button class="btn btn-primary-gamestore" type="submit"><i class="fas fa-paper-plane"></i></button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="border-top pt-3 mt-4 text-center">
+  <p class="text-secondary mb-0">&copy; 2026 CoreIIGether. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom JS -->
+  <script src="games.js"></script>
+  <script src="utils.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>

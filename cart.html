@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart - CoreIIGether</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="bootstrap-custom.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-gamestore">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">CoreIIGether</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i> Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="store.html"><i class="fas fa-store me-1"></i> Store</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html"><i class="fas fa-tags me-1"></i> Categories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="promo.html"><i class="fas fa-percent me-1"></i> Promo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="news.html"><i class="fas fa-newspaper me-1"></i> News</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart me-1"></i> Cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="wishlist.html"><i class="fas fa-heart me-1"></i> Wishlist</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link support-link" href="#" role="button"><i class="fas fa-headset me-1"></i> Support</a>
+          </li>
+        </ul>
+
+        <!-- Compact search dropdown (kept IDs for compatibility with main.js) -->
+        <div class="nav-search dropdown ms-3">
+          <button class="btn btn-outline-gamestore dropdown-toggle" id="navSearchToggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-search"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-end p-3">
+            <form class="d-flex" id="navSearchForm" onsubmit="return false;">
+              <input class="form-control form-control-gamestore me-2" type="search" placeholder="Search games..." id="searchInput">
+              <button class="btn btn-primary-gamestore" type="button" id="searchBtn"><i class="fas fa-search"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top:100px;">
+    <h1 class="mb-3">Keranjang Belanja</h1>
+    <p>Ini adalah halaman keranjang (placeholder). Item yang ditambahkan akan muncul di sini.</p>
+    <div id="cartItems"></div>
+  </main>
+
+  <footer class="footer-gamestore mt-5">
+  <div class="container text-center py-3">
+    <p class="text-secondary mb-0">&copy; 2026 CoreIIGether.All rights reserved.</div></p>
+  </footer>
+  <!-- floating music control removed from this page (centralized in index.html) -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="games.js"></script>
+  <script src="utils.js"></script>
+  <script src="main.js"></script>
+  <script>
+    // Render cart from localStorage
+    function renderCart() {
+      const container = document.getElementById('cartItems');
+      const cart = loadFromLocalStorage('cart') || [];
+
+      if (!container) return;
+
+      if (!cart.length) {
+        container.innerHTML = '<div class="p-4 text-center text-secondary">Keranjang Anda kosong. Tambahkan game dari halaman Store.</div>';
+        updateCartCount();
+        return;
+      }
+
+      const totalPrice = cart.reduce((sum, it) => sum + (it.price * (it.quantity || 1)), 0);
+
+      container.innerHTML = `
+        <div class="list-group mb-3">
+          ${cart.map(item => `
+            <div class="list-group-item d-flex align-items-center" data-id="${item.id}">
+              <img src="${item.image}" alt="${item.title}" style="width:72px; height:72px; object-fit:cover; border-radius:6px; margin-right:12px;">
+              <div class="flex-grow-1">
+                <div class="fw-bold">${item.title}</div>
+                <div class="text-secondary small">Rp ${item.price.toLocaleString('id-ID')}</div>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-sm btn-outline-gamestore cart-decrease" data-id="${item.id}">-</button>
+                <div class="px-2">${item.quantity || 1}</div>
+                <button class="btn btn-sm btn-outline-gamestore cart-increase" data-id="${item.id}">+</button>
+                <button class="btn btn-sm btn-outline-gamestore ms-2 cart-remove" data-id="${item.id}"><i class="fas fa-trash"></i></button>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="fw-bold">Total:</div>
+          <div class="fw-bold">Rp ${totalPrice.toLocaleString('id-ID')}</div>
+        </div>
+        <div class="mt-3 text-end">
+          <button class="btn btn-primary-gamestore" id="checkoutBtn">Lanjut ke Checkout</button>
+        </div>
+      `;
+
+      updateCartCount();
+    }
+
+    document.addEventListener('click', function(e) {
+      const rem = e.target.closest('.cart-remove');
+      if (rem) {
+        const id = parseInt(rem.dataset.id, 10);
+        if (!isNaN(id)) {
+          let cart = loadFromLocalStorage('cart') || [];
+          cart = cart.filter(i => i.id !== id);
+          saveToLocalStorage('cart', cart);
+          showAlert('Item dihapus dari Cart', 'info');
+          renderCart();
+        }
+        return;
+      }
+
+      const inc = e.target.closest('.cart-increase');
+      if (inc) {
+        const id = parseInt(inc.dataset.id, 10);
+        if (!isNaN(id)) {
+          const cart = loadFromLocalStorage('cart') || [];
+          const it = cart.find(i => i.id === id);
+          if (it) {
+            it.quantity = (it.quantity || 1) + 1;
+            saveToLocalStorage('cart', cart);
+            renderCart();
+          }
+        }
+        return;
+      }
+
+      const dec = e.target.closest('.cart-decrease');
+      if (dec) {
+        const id = parseInt(dec.dataset.id, 10);
+        if (!isNaN(id)) {
+          const cart = loadFromLocalStorage('cart') || [];
+          const it = cart.find(i => i.id === id);
+          if (it) {
+            it.quantity = (it.quantity || 1) - 1;
+            if (it.quantity <= 0) {
+              const newCart = cart.filter(i => i.id !== id);
+              saveToLocalStorage('cart', newCart);
+            } else {
+              saveToLocalStorage('cart', cart);
+            }
+            renderCart();
+          }
+        }
+        return;
+      }
+
+      const checkout = e.target.closest('#checkoutBtn');
+      if (checkout) {
+        // Build and show a checkout modal with a QRIS placeholder image
+        const cart = loadFromLocalStorage('cart') || [];
+        const totalPrice = cart.reduce((sum, it) => sum + (it.price * (it.quantity || 1)), 0);
+
+        const modalId = 'checkoutModal';
+        let modal = document.getElementById(modalId);
+        if (!modal) {
+          modal = document.createElement('div');
+          modal.className = 'modal fade';
+          modal.id = modalId;
+          modal.innerHTML = `
+            <div class="modal-dialog modal-md modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Checkout — Pembayaran</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                  <p class="mb-2">Total yang harus dibayar:</p>
+                  <h4 class="mb-3">Rp ${totalPrice.toLocaleString('id-ID')}</h4>
+                  <p class="text-secondary">Pilih metode pembayaran: <strong>QRIS</strong></p>
+                  <div class="mb-3">
+                    <!-- Inline SVG placeholder for QRIS so user can replace the src later -->
+                    <img id="qrisImage" src="bahan/qrcode.jpg" alt="QRIS" style="max-width:260px; width:100%; height:auto; border:1px solid #e9e9e9;">
+                  </div>
+                  <p class="small text-secondary">Scan QR di atas dengan aplikasi pembayaran Anda, lalu tekan "Saya sudah bayar" setelah melakukan transfer.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-gamestore" data-bs-dismiss="modal">Batal</button>
+                  <button type="button" class="btn btn-primary-gamestore" id="confirmPaymentBtn">Saya sudah bayar</button>
+                </div>
+              </div>
+            </div>
+          `;
+          document.body.appendChild(modal);
+        } else {
+          // update total if modal already exists
+          modal.querySelector('.modal-body h4').textContent = `Rp ${totalPrice.toLocaleString('id-ID')}`;
+        }
+
+        const bsModal = new bootstrap.Modal(modal);
+        bsModal.show();
+
+        // wire confirm button
+        const confirmBtn = modal.querySelector('#confirmPaymentBtn');
+        confirmBtn.onclick = function() {
+          // Clear cart and update
+          saveToLocalStorage('cart', []);
+          updateCartCount();
+          renderCart();
+          bsModal.hide();
+          const success = createSuccessModal('Pembayaran Diterima', 'Terima kasih! Pembayaran Anda telah dicatat. Pesanan akan diproses.');
+          new bootstrap.Modal(success).show();
+        };
+
+        return;
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      renderCart();
+    });
+  </script>
+    <!-- Floating music control (restored) -->
+    <div class="floating-music" aria-hidden="false">
+      <button id="floatingMusicBtn" title="Play / Pause background music"><i class="fas fa-play"></i></button>
+      <div class="floating-label">Background Music</div>
+    </div>
+  </body>
+
+</html>

@@ -1,0 +1,650 @@
+/* style.css - Main custom styles for CoreIIGether */
+
+:root {
+  --primary-dark: #0d1117;
+  --secondary-dark: #161b22;
+  --accent-blue: #1f6feb;
+  --accent-blue-light: #388bfd;
+  --text-primary: #f0f6fc;
+  --text-secondary: #8b949e;
+  --card-bg: #21262d;
+  --card-border: #30363d;
+  --success-color: #238636;
+  --warning-color: #f0883e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--primary-dark);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  padding-top: 80px;
+  /* Untuk memberi ruang pada fixed navbar */
+}
+
+body[data-theme="light"] {
+  --primary-dark: #f6f8fa;
+  --secondary-dark: #ffffff;
+  --accent-blue: #0969da;
+  --accent-blue-light: #1a7f37;
+  --text-primary: #24292f;
+  --text-secondary: #57606a;
+  --card-bg: #ffffff;
+  --card-border: #d0d7de;
+  --success-color: #1a7f37;
+  --warning-color: #bf8700;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+}
+
+/* Navbar Styling - Minimal translucent (glass) style for futuristic dark UI */
+.navbar-gamestore {
+  /* translucent background so page content is slightly visible behind navbar */
+  background-color: rgba(6, 10, 15, 0.36) !important;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 0.6rem 0;
+  box-shadow: none; /* keep it clean and minimal */
+  transition: background-color 220ms ease, border-color 220ms ease, transform 220ms ease;
+}
+
+/* Keep navbar items on one line and avoid wrapping */
+.navbar-gamestore .navbar-collapse {
+  white-space: nowrap;
+}
+
+.navbar-gamestore .navbar-nav {
+  flex-wrap: nowrap; /* prevent wrapping to new line */
+  gap: 0.5rem; /* spacing between items */
+  align-items: center;
+}
+
+.navbar-gamestore .nav-link {
+  white-space: nowrap; /* prevent link text wrapping */
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Make the search form compact and not grow/shrink unexpectedly */
+.navbar-gamestore form.d-flex {
+  flex: 0 0 auto;
+}
+
+.navbar-gamestore .input-group {
+  min-width: 160px;
+  max-width: 300px;
+}
+
+/* When viewport is narrow let navbar collapse as usual */
+@media (max-width: 991px) {
+  .navbar-gamestore .navbar-nav {
+    flex-wrap: wrap; /* allow wrapping inside collapsed menu */
+  }
+  .navbar-gamestore .input-group {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+/* Nav search dropdown styling */
+.nav-search .dropdown-toggle {
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.6rem;
+  border-radius: 8px;
+}
+
+.nav-search .dropdown-menu {
+  /* match navbar glass look */
+  background-color: rgba(10, 14, 20, 0.55);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.035);
+  min-width: 240px;
+  box-shadow: 0 10px 30px rgba(2,6,12,0.45);
+}
+
+/* animate dropdown (scale + fade) */
+.nav-search .dropdown-menu {
+  transform: scale(0.95);
+  opacity: 0;
+  transition: transform 180ms ease, opacity 180ms ease;
+  transform-origin: top right;
+}
+
+.nav-search .dropdown-menu.show {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Floating controls: move search and dark-mode toggle to bottom-right and keep fixed */
+.nav-search {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1080; /* above most UI elements */
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: auto;
+}
+
+.nav-search .dropdown-toggle {
+  display: none; /* hide top toggle button, we'll show the search input directly */
+}
+
+.nav-search .dropdown-menu {
+  position: static !important;
+  display: flex !important;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.6rem !important;
+  min-width: 260px;
+  border-radius: 12px;
+}
+
+.nav-search .form-control {
+  width: 170px;
+  padding: 0.45rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.04);
+  background-color: rgba(10,14,20,0.45);
+  color: var(--text-primary);
+  box-shadow: none;
+}
+
+#searchBtn {
+  padding: 0.35rem 0.6rem;
+  border-radius: 8px;
+}
+
+/* Dark mode toggle floating button */
+#darkModeToggle {
+  position: fixed;
+  right: 20px;
+  bottom: 84px; /* sits above the search bar */
+  z-index: 1080;
+  width: 44px;
+  height: 44px;
+  padding: 0.35rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background-color: rgba(6,10,15,0.42);
+  border: 1px solid rgba(255,255,255,0.035);
+}
+
+/* Adjust icon size inside the floating controls */
+#darkModeToggle i,
+.nav-search .fa-search {
+  font-size: 1.05rem;
+  color: var(--text-primary);
+}
+
+/* On very small screens, compress the controls a bit */
+@media (max-width: 420px) {
+  .nav-search .form-control { width: 120px; }
+  #darkModeToggle { right: 12px; bottom: 72px; }
+  .nav-search { right: 12px; bottom: 12px; }
+}
+
+/* Floating music control (bottom-right) */
+.floating-music {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.floating-music button#floatingMusicBtn {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(31,111,235,0.95), rgba(56,139,253,0.95));
+  color: #fff;
+  border: none;
+  box-shadow: 0 8px 20px rgba(2,6,12,0.45);
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+}
+.floating-music button#floatingMusicBtn:active { transform: scale(0.96); }
+.floating-music button#floatingMusicBtn .fa { font-size: 1.05rem; }
+.floating-music .floating-label {
+  background: rgba(6,10,15,0.6);
+  color: var(--text-primary);
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  display: none; /* hidden by default, can be enabled if desired */
+}
+
+@media (max-width: 420px) {
+  .floating-music { right: 12px; bottom: 12px; }
+  .floating-music .floating-label { display: none; }
+}
+
+.nav-search .form-control {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-primary);
+}
+
+.nav-search .btn-primary-gamestore {
+  padding: 0.35rem 0.8rem;
+}
+
+/* On small screens keep search full width inside dropdown */
+@media (max-width: 576px) {
+  .nav-search .dropdown-menu {
+    min-width: 200px;
+  }
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: var(--accent-blue-light) !important;
+  letter-spacing: -0.02em;
+}
+
+.navbar-brand span {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.nav-link {
+  color: rgba(255,255,255,0.78) !important; /* visible over translucent background */
+  font-weight: 500;
+  margin: 0 6px;
+  transition: color 180ms ease, transform 160ms ease;
+  opacity: 0.85;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.nav-link svg,
+.nav-link .fa,
+.nav-link i {
+  opacity: 0.9;
+  font-size: 1.05rem;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--text-primary) !important;
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.navbar-toggler {
+  border-color: rgba(255,255,255,0.06);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.82%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+body[data-theme="light"] .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.7%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Compact / minimal navbar tweaks to make menu rapi */
+.navbar-gamestore {
+  padding: 0.35rem 0;
+}
+.navbar-gamestore .navbar-nav {
+  gap: 0.4rem;
+}
+.navbar-gamestore .nav-link {
+  padding: 0.25rem 6px;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+.navbar-gamestore .nav-link i {
+  font-size: 1rem;
+}
+
+/* Wishlist card — dark, subtle, and esthetic */
+.wishlist-card {
+  background-color: rgba(255,255,255,0.02); /* very subtle light on dark */
+  border: 1px solid rgba(255,255,255,0.035);
+  color: var(--text-primary);
+  box-shadow: 0 6px 18px rgba(2,6,12,0.45);
+}
+.wishlist-card .fw-bold {
+  color: var(--text-primary);
+}
+.wishlist-card .text-secondary {
+  color: var(--text-secondary);
+}
+.wishlist-card img {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.35);
+}
+.wishlist-card .wishlist-add-cart {
+  min-width: 120px;
+}
+
+/* Ensure cards look good in light theme as well */
+body[data-theme="light"] .wishlist-card {
+  background-color: var(--card-bg);
+  border-color: var(--card-border);
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(rgba(13, 17, 23, 0.9), rgba(13, 17, 23, 0.9)), url("bahan/bg_game.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--card-border);
+  margin-bottom: 2rem;
+}
+
+body[data-theme="light"] .hero-section {
+  background: linear-gradient(rgba(246, 248, 250, 0.9), rgba(246, 248, 250, 0.9)), url("bahan/bg_game.jpg");
+}
+
+/* Game Card Styling */
+.game-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  height: 100%;
+  cursor: pointer;
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-color: var(--accent-blue);
+}
+
+.game-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.game-card:hover img {
+  transform: scale(1.05);
+}
+
+.game-card-body {
+  padding: 1.2rem;
+}
+
+.game-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.game-genre {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.8rem;
+}
+
+.game-price {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.game-price.discount {
+  color: var(--warning-color);
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-right: 0.5rem;
+}
+
+/* Button Styling */
+.btn-primary-gamestore {
+  background-color: var(--accent-blue);
+  border-color: var(--accent-blue);
+  color: white;
+  font-weight: 600;
+  padding: 0.5rem 1.5rem;
+  transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
+}
+
+.btn-primary-gamestore:hover {
+  background-color: var(--accent-blue-light);
+  border-color: var(--accent-blue-light);
+  transform: translateY(-2px);
+}
+
+.btn-outline-gamestore {
+  background-color: transparent;
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+  font-weight: 600;
+  padding: 0.5rem 1.5rem;
+  transition: all 0.3s;
+}
+
+.btn-outline-gamestore:hover {
+  background-color: var(--accent-blue);
+  color: white;
+}
+
+/* Section Styling */
+.section-title {
+  color: var(--text-primary);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent-blue);
+  display: inline-block;
+}
+
+/* Footer Styling */
+.footer-gamestore {
+  background-color: var(--secondary-dark);
+  border-top: 1px solid var(--card-border);
+  padding: 3rem 0 1.5rem;
+  margin-top: 3rem;
+}
+
+.footer-links h5 {
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--accent-blue-light);
+}
+
+/* Badge Styling */
+.badge-gamestore {
+  background-color: var(--accent-blue);
+  color: white;
+  font-weight: 500;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+}
+
+.badge-discount {
+  background-color: var(--warning-color);
+  color: white;
+  font-weight: 600;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+/* Slightly increase modal text contrast */
+.modal-content.bg-dark { background-color: rgba(8,10,12,0.96); }
+
+/* Game Detail Page */
+.game-detail-hero {
+  background: linear-gradient(rgba(13, 17, 23, 0.8), rgba(13, 17, 23, 0.9)), url('https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+  background-size: cover;
+  background-position: center;
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--card-border);
+  margin-bottom: 2rem;
+}
+
+body[data-theme="light"] .game-detail-hero {
+  background: linear-gradient(rgba(246, 248, 250, 0.8), rgba(246, 248, 250, 0.9)), url('https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+}
+
+/* Loading Animation */
+.loading-spinner {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(31, 111, 235, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--accent-blue);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Fade In Animation */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  body {
+    padding-top: 70px;
+  }
+
+  .hero-section {
+    padding: 2rem 0;
+  }
+
+  
+
+  .display-4 {
+    font-size: 2rem;
+  }
+}
+
+/* News page tweaks */
+.card.game-card .row.g-0 { align-items: stretch; }
+.card.game-card .col-md-4 img,
+.card.game-card .col-md-4 .img-fluid {
+  width: 100%;
+  height: 200px; /* limit height to avoid huge empty areas */
+  object-fit: cover;
+  display: block;
+  border-radius: 0; /* rounded handled by parent */
+}
+.card.game-card .game-card-body { padding: 1.25rem; }
+.card.game-card h3.game-title { font-size: 1.35rem; margin-bottom: 0.35rem; }
+.card.game-card h4.game-title { font-size: 1.15rem; }
+.card.game-card p { color: var(--text-secondary); }
+
+/* Sidebar links in news */
+aside .list-unstyled a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+aside .list-unstyled a:hover {
+  color: var(--accent-blue-light);
+  text-decoration: underline;
+}
+
+/* Make 'Baca Selengkapnya' small button consistent */
+.card.game-card .btn-outline-gamestore.btn-sm {
+  padding: 0.35rem 0.6rem;
+  font-size: 0.85rem;
+}
+
+/* News page: simpler, remove hover effects and hide 'Baca Selengkapnya' buttons */
+.news-page .game-card {
+  cursor: default;
+}
+.news-page .game-card:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+.news-page .btn-outline-gamestore.btn-sm { display: none !important; }
+.news-page .card.game-card .game-card-body { padding: 1rem; }
+.news-page .card.game-card h3.game-title { font-size: 1.25rem; }
+.news-page .card.game-card img { border-radius: 6px; }
+
+/* Sidebar small article cards */
+.sidebar-card-list { display: flex; flex-direction: column; }
+.sidebar-article-card { gap: 0.6rem; }
+.sidebar-thumb { width: 72px; height: 56px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
+.sidebar-link { color: var(--text-primary); text-decoration: none; }
+.sidebar-link:hover, .sidebar-link:focus { color: var(--accent-blue-light); text-decoration: underline; }
+
+@media (max-width: 991px) {
+  .sidebar-thumb { width: 64px; height: 48px; }
+}

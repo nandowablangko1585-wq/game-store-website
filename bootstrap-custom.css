@@ -1,0 +1,190 @@
+/* bootstrap-custom.css - Custom Bootstrap overrides */
+
+/* Pagination Customization */
+.pagination-gamestore .page-link {
+  background-color: var(--card-bg);
+  border-color: var(--card-border);
+  color: var(--text-secondary);
+}
+
+.pagination-gamestore .page-link:hover {
+  background-color: var(--accent-blue);
+  border-color: var(--accent-blue);
+  color: white;
+}
+
+.pagination-gamestore .page-item.active .page-link {
+  background-color: var(--accent-blue);
+  border-color: var(--accent-blue);
+}
+
+/* Form Control Styling */
+.form-control-gamestore {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-primary);
+  padding: 0.6rem 1rem;
+}
+
+.form-control-gamestore:focus {
+  background-color: var(--card-bg);
+  border-color: var(--accent-blue);
+  color: var(--text-primary);
+  box-shadow: 0 0 0 0.25rem rgba(31, 111, 235, 0.25);
+}
+
+.form-control-gamestore::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Alert Styling */
+.alert-gamestore {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-primary);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+}
+
+.alert-gamestore.alert-success {
+  border-color: var(--success-color);
+}
+
+.alert-gamestore.alert-warning {
+  border-color: var(--warning-color);
+}
+
+.alert-gamestore.alert-info {
+  border-color: var(--accent-blue);
+}
+
+/* Modal Customization */
+.modal-content {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-primary);
+}
+
+.modal-header {
+  border-bottom-color: var(--card-border);
+}
+
+.modal-footer {
+  border-top-color: var(--card-border);
+}
+
+.btn-close-white {
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* Dropdown Customization */
+.dropdown-menu {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+}
+
+.dropdown-item {
+  color: var(--text-primary);
+}
+
+.dropdown-item:hover {
+  background-color: var(--accent-blue);
+  color: white;
+}
+
+.dropdown-divider {
+  border-top-color: var(--card-border);
+}
+
+/* Card Customization */
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+}
+
+.card-header {
+  background-color: var(--secondary-dark);
+  border-bottom-color: var(--card-border);
+  color: var(--text-primary);
+}
+
+/* Form Check Customization */
+.form-check-input {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+}
+
+.form-check-input:checked {
+  background-color: var(--accent-blue);
+  border-color: var(--accent-blue);
+}
+
+.form-check-label {
+  color: var(--text-primary);
+}
+
+/* Table Customization */
+.table {
+  color: var(--text-primary);
+}
+
+.table-dark {
+  --bs-table-bg: var(--secondary-dark);
+  --bs-table-striped-bg: var(--card-bg);
+  --bs-table-striped-color: var(--text-primary);
+  --bs-table-active-bg: var(--card-border);
+  --bs-table-active-color: var(--text-primary);
+  --bs-table-hover-bg: var(--card-border);
+  --bs-table-hover-color: var(--text-primary);
+}
+
+/* Tooltip Customization */
+.tooltip {
+  --bs-tooltip-bg: var(--accent-blue);
+  --bs-tooltip-color: white;
+}
+
+/* Progress Bar Customization */
+.progress {
+  background-color: var(--card-bg);
+}
+
+.progress-bar {
+  background-color: var(--accent-blue);
+}
+
+/* List Group Customization */
+.list-group-item {
+  background-color: var(--card-bg);
+  border-color: var(--card-border);
+  color: var(--text-primary);
+}
+
+.list-group-item.active {
+  background-color: var(--accent-blue);
+  border-color: var(--accent-blue);
+}
+
+/* Accordion Customization */
+.accordion-item {
+  background-color: var(--card-bg);
+  border-color: var(--card-border);
+}
+
+.accordion-button {
+  background-color: var(--secondary-dark);
+  color: var(--text-primary);
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: var(--accent-blue);
+  color: white;
+}
+
+.accordion-button::after {
+  filter: invert(0.5);
+}
+
+.accordion-body {
+  color: var(--text-primary);
+}

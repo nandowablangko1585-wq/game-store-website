@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Store - CoreIIGether</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="bootstrap-custom.css">
+</head>
+
+<body>
+  <!-- Navigation Bar (sama seperti index.html) -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-gamestore">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">CoreIIGether</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i> Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="store.html"><i class="fas fa-store me-1"></i> Store</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html"><i class="fas fa-tags me-1"></i> Categories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="promo.html"><i class="fas fa-percent me-1"></i> Promo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="news.html"><i class="fas fa-newspaper me-1"></i> News</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart me-1"></i> Cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="wishlist.html"><i class="fas fa-heart me-1"></i> Wishlist</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link support-link" href="#" role="button"><i class="fas fa-headset me-1"></i> Support</a>
+          </li>
+        </ul>
+
+        <!-- Compact search dropdown (kept IDs for compatibility with main.js) -->
+        <div class="nav-search dropdown ms-3">
+          <button class="btn btn-outline-gamestore dropdown-toggle" id="navSearchToggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-search"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-end p-3">
+            <form class="d-flex" id="navSearchForm" onsubmit="return false;">
+              <input class="form-control form-control-gamestore me-2" type="search" placeholder="Search games..." id="searchInput">
+              <button class="btn btn-primary-gamestore" type="button" id="searchBtn"><i class="fas fa-search"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Store Header -->
+  <section class="hero-section py-4">
+    <div class="container">
+      <h1 class="display-5 fw-bold mb-3">Game Store</h1>
+      <p class="lead mb-4">Jelajahi katalog lengkap game digital kami</p>
+
+      <!-- Filter Buttons -->
+      <div class="d-flex flex-wrap gap-2 mb-4">
+        <button class="btn btn-outline-gamestore filter-btn active" data-category="all">
+          Semua Game
+        </button>
+        <button class="btn btn-outline-gamestore filter-btn" data-category="rpg">
+          RPG
+        </button>
+        <button class="btn btn-outline-gamestore filter-btn" data-category="action">
+          Action
+        </button>
+        <button class="btn btn-outline-gamestore filter-btn" data-category="adventure">
+          Adventure
+        </button>
+        <button class="btn btn-outline-gamestore filter-btn" data-category="fps">
+          FPS
+        </button>
+        <button class="btn btn-outline-gamestore filter-btn" data-category="sports">
+          Sports
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Store Content -->
+  <main class="container">
+    <!-- All Games Section -->
+    <section class="mb-5">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="section-title">Semua Game</h2>
+        <div class="d-flex align-items-center">
+          <span class="me-3 text-secondary" id="gameCount">Menampilkan 0 game</span>
+          <select class="form-select form-control-gamestore w-auto" id="sortSelect">
+            <option value="popular">Paling Populer</option>
+            <option value="newest">Terbaru</option>
+            <option value="price-low">Harga: Rendah ke Tinggi</option>
+            <option value="price-high">Harga: Tinggi ke Rendah</option>
+            <option value="discount">Diskon Terbesar</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row g-4" id="gamesContainer">
+        <!-- Games will be loaded here by JavaScript -->
+      </div>
+
+      <!-- Pagination -->
+      <nav class="mt-5">
+        <ul class="pagination pagination-gamestore justify-content-center">
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">Previous</a>
+          </li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </section>
+  </main>
+
+  <!-- Footer (sama seperti index.html) -->
+  <footer class="footer-gamestore">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4">
+          <h5 class="mb-3">CoreIIGether</h5>
+          <p>Toko game digital terpercaya dengan koleksi terlengkap dan harga terbaik untuk gamers Indonesia.</p>
+          <div class="d-flex mt-3">
+            <a href="#" class="btn btn-outline-gamestore btn-sm me-2"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="btn btn-outline-gamestore btn-sm me-2"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="btn btn-outline-gamestore btn-sm me-2"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="btn btn-outline-gamestore btn-sm"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <h5 class="mb-3">Tautan Cepat</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="store.html">Store</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li><a href="promo.html">Promo & Discount</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <h5 class="mb-3">Informasi</h5>
+          <ul class="footer-links">
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="wishlist.html">Wishlist</a></li>
+            <li><a href="#">Kebijakan Privasi</a></li>
+            <li><a href="#">Syarat & Ketentuan</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <h5 class="mb-3">Newsletter</h5>
+          <p>Dapatkan info promo dan game terbaru langsung ke email Anda.</p>
+          <form id="newsletterForm">
+            <div class="input-group mb-3">
+              <input type="email" class="form-control form-control-gamestore" placeholder="Email Anda" required>
+              <button class="btn btn-primary-gamestore" type="submit"><i class="fas fa-paper-plane"></i></button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="border-top pt-3 mt-4 text-center">
+  <p class="text-secondary mb-0">&copy; 2026 CoreIIGether. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <!-- floating music control removed from this page (centralized in index.html) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom JS -->
+  <script src="games.js"></script>
+  <script src="utils.js"></script>
+  <script src="main.js"></script>
+
+  <!-- Store-specific JS -->
+  <script>
+    // Store page initialization - robust for SPA and full loads
+    (function storeInit() {
+      function init() {
+        // Check URL params for category filter
+        const params = typeof getUrlParams === 'function' ? getUrlParams() : {};
+        const initialCategory = params.category || 'all';
+
+        // Set active filter button if present
+        const activeBtn = document.querySelector(`.filter-btn[data-category="${initialCategory}"]`);
+        if (activeBtn) {
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          activeBtn.classList.add('active');
+        }
+
+        // Load games using initial category
+        if (typeof filterGames === 'function') filterGames(initialCategory);
+
+        // Sort functionality
+        const sortSelect = document.getElementById('sortSelect');
+        if (sortSelect) {
+          sortSelect.addEventListener('change', function () {
+            const sortBy = this.value;
+            if (typeof sortGames === 'function') sortGames(sortBy);
+          });
+        }
+      }
+
+      if (document.readyState === 'interactive' || document.readyState === 'complete') {
+        init();
+      } else {
+        document.addEventListener('DOMContentLoaded', init);
+      }
+
+      // Also run when SPA loads the page
+      document.addEventListener('spa:pageLoaded', function () {
+        try { init(); } catch (e) {}
+      });
+    })();
+
+    // Sort games function
+    function sortGames(sortBy) {
+      const gamesContainer = document.getElementById('gamesContainer');
+      if (!gamesContainer) return;
+
+      let sortedGames = [...getAllGames()];
+
+      switch (sortBy) {
+        case 'newest':
+          sortedGames.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+          break;
+        case 'price-low':
+          sortedGames.sort((a, b) => {
+            const priceA = a.discount > 0 ? calculateDiscountPrice(a.price, a.discount) : a.price;
+            const priceB = b.discount > 0 ? calculateDiscountPrice(b.price, b.discount) : b.price;
+            return priceA - priceB;
+          });
+          break;
+        case 'price-high':
+          sortedGames.sort((a, b) => {
+            const priceA = a.discount > 0 ? calculateDiscountPrice(a.price, a.discount) : a.price;
+            const priceB = b.discount > 0 ? calculateDiscountPrice(b.price, b.discount) : b.price;
+            return priceB - priceA;
+          });
+          break;
+        case 'discount':
+          sortedGames.sort((a, b) => b.discount - a.discount);
+          break;
+        case 'popular':
+        default:
+          sortedGames.sort((a, b) => b.rating - a.rating);
+          break;
+      }
+
+      gamesContainer.innerHTML = sortedGames
+        .slice(0, 8)
+        .map(game => createGameCard(game))
+        .join('');
+
+      updateGameCount(sortedGames.length);
+    }
+
+    // Update game count display
+    function updateGameCount(count) {
+      const gameCountElement = document.getElementById('gameCount');
+      if (gameCountElement) {
+        gameCountElement.textContent = `Menampilkan ${count} game`;
+      }
+    }
+
+    // Override filterGames for store page
+    const originalFilterGames = window.filterGames;
+    window.filterGames = function (category) {
+      originalFilterGames(category);
+
+      // Update game count
+      const games = category === 'all' ? getAllGames() : getGamesByGenre(category);
+      updateGameCount(games.length);
+    };
+  </script>
+  <!-- Floating music control (restored) -->
+  <div class="floating-music" aria-hidden="false">
+    <button id="floatingMusicBtn" title="Play / Pause background music"><i class="fas fa-play"></i></button>
+    <div class="floating-label">Background Music</div>
+  </div>
+</body>
+
+</html>

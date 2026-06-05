@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categories - CoreIIGether</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="bootstrap-custom.css">
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-gamestore">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">CoreIIGether</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i> Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="store.html"><i class="fas fa-store me-1"></i> Store</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="categories.html"><i class="fas fa-tags me-1"></i> Categories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="promo.html"><i class="fas fa-percent me-1"></i> Promo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="news.html"><i class="fas fa-newspaper me-1"></i> News</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart me-1"></i> Cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="wishlist.html"><i class="fas fa-heart me-1"></i> Wishlist</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link support-link" href="#" role="button"><i class="fas fa-headset me-1"></i> Support</a>
+          </li>
+        </ul>
+
+        <!-- Compact search dropdown (kept IDs for compatibility with main.js) -->
+        <div class="nav-search dropdown ms-3">
+          <button class="btn btn-outline-gamestore dropdown-toggle" id="navSearchToggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-search"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-end p-3">
+            <form class="d-flex" id="navSearchForm" onsubmit="return false;">
+              <input class="form-control form-control-gamestore me-2" type="search" placeholder="Search games..." id="searchInput">
+              <button class="btn btn-primary-gamestore" type="button" id="searchBtn"><i class="fas fa-search"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero-section py-4">
+    <div class="container">
+      <h1 class="display-5 fw-bold mb-3">Game Categories</h1>
+      <p class="lead mb-4">Temukan game berdasarkan genre favorit Anda</p>
+    </div>
+  </section>
+
+  <main class="container">
+    <!-- Kategori-kategori game -->
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="card game-card text-center" role="button" data-category="rpg">
+          <div class="game-card-body">
+            <i class="fas fa-dragon fa-3x text-primary mb-3"></i>
+            <h3>RPG</h3>
+            <p>Role-playing games dengan cerita mendalam</p>
+            <span class="badge-gamestore">42 Game</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card game-card text-center" role="button" data-category="action">
+          <div class="game-card-body">
+            <i class="fas fa-bomb fa-3x text-primary mb-3"></i>
+            <h3>Action</h3>
+            <p>Game aksi cepat penuh adrenalin</p>
+            <span class="badge-gamestore">30 Game</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card game-card text-center" role="button" data-category="sports">
+          <div class="game-card-body">
+            <i class="fas fa-futbol fa-3x text-primary mb-3"></i>
+            <h3>Sports</h3>
+            <p>Game olahraga dan simulasi</p>
+            <span class="badge-gamestore">15 Game</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-gamestore">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4">
+          <h5 class="mb-3">CoreIIGether</h5>
+          <p>Toko game digital terpercaya dengan koleksi terlengkap dan harga terbaik untuk gamers Indonesia.</p>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <h5 class="mb-3">Tautan Cepat</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="store.html">Store</a></li>
+            <li><a href="categories.html">Categories</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <h5 class="mb-3">Informasi</h5>
+          <ul class="footer-links">
+            <li><a href="#">Kebijakan Privasi</a></li>
+            <li><a href="#">Syarat & Ketentuan</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <h5 class="mb-3">Newsletter</h5>
+          <p>Dapatkan info promo dan game terbaru langsung ke email Anda.</p>
+          <form id="newsletterForm">
+            <div class="input-group mb-3">
+              <input type="email" class="form-control form-control-gamestore" placeholder="Email Anda" required>
+              <button class="btn btn-primary-gamestore" type="submit"><i class="fas fa-paper-plane"></i></button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="border-top pt-3 mt-4 text-center">
+  <p class="text-secondary mb-0">&copy; 2026 CoreIIGether. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- floating music control removed from this page (centralized in index.html) -->
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom JS -->
+  <script src="games.js"></script>
+  <script src="utils.js"></script>
+  <script src="main.js"></script>
+  <!-- Floating music control (restored) -->
+  <div class="floating-music" aria-hidden="false">
+    <button id="floatingMusicBtn" title="Play / Pause background music"><i class="fas fa-play"></i></button>
+    <div class="floating-label">Background Music</div>
+  </div>
+</body>
+
+</html>
